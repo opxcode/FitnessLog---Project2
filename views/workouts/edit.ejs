@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <% include ../partials/head_index.ejs %>
+    <title></title>
+  </head>
+  <body>
+      <br>
+      <br>
+      <br>
+    <h1>Edit Workout</h1>
+ 
+    <form
+      class=""
+      action="/workouts/<%=workouts.id%>?_method=PUT"
+      method="POST"
+    >
+    <div class = "form-group row justify-content-center">   
+        <label class= "col-sm-2 col-form-label"  for="date">Date</label>
+        <div class="">   
+        <input  class = "form-control" id="date" type="date" name="date" value="<%=moment(workouts.date).format("MMM-YY")%> " >
+      </div>
+    </div>
+      <div class = "form-group row justify-content-center"> 
+          <label class= "col-sm-2 col-form-label" for="activity">Activity</label>
+          <div class="">   
+        <input class = "form-control" id="activity" type="activity" name="activity"  value="<%=workouts.activity%>" >
+      </div>
+    </div>
+    <div class = "form-group row justify-content-center"> 
+        <label class= "col-sm-2 col-form-label" for="activity">Weight</label>
+        <div class="">   
+      <input class = "form-control" id="activity" type="activity" name="activity"  value="<%=workouts.weight%>" >
+    </div>
+    </div>
+    <div class = "form-group row justify-content-center"> 
+        <label class= "col-sm-2 col-form-label" for="activity">Rep</label>
+        <div class="">   
+      <input class = "form-control" id="rep" type="activity" name="rep"  value="<%=workouts.rep%> ">
+    </div>
+    </div>
+      <input class = "btn btn-primary" type="submit" name="action" value = "Save"></input>
+    </form>
+  </body>
+</html>

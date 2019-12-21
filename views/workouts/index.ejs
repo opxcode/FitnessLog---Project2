@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <% include ../partials/head_index.ejs %>
+  </head>
+  <body>
+    <hr>
+    <hr>
+      <div>
+    <div class="d-flex justify-content-start workout">
+        <div class= "p-2"> My Workouts</div>
+        <a class= "p-2" href="/workouts/new">Log New Workout</a>
+    </div>
+    <div class ="month">
+        <a class="btn btn-primary" href="/workouts?prevmonth=true&dateView=<%= moment(dateView).format("MM-YYYY")%>"><</a>
+        <button type="text" class="btn btn-primary"/> <%= moment(dateView).format("MMM-YY")%></button>
+   <a class="btn btn-primary" href="/workouts?nextmonth=true&dateView=<%= moment(dateView).format("MM-YYYY")%>">></a>
+    </div>
+    <br>
+      <div class="workoutlog">
+      <table class="table">
+        <tr>
+          <th>Date</th>
+          <th>Day</th>
+          <th>Activities</th>
+          <th>Weight</th>
+          <th>Reps</th>
+          <th></th>
+          <th></th>
+        </tr>
+
+        <%if(workouts.length >0){%>
+          <%for(let i = 0; i < workouts.length; i++){ %>
+         <% if(moment(workouts[i].date).format("MMM-YY") ===moment(dateView).format("MMM-YY")){%>
+        <tr>
+          <td><%=moment(workouts[i].date).format("DD-MMM") %></td>
+          <td><%=moment(workouts[i].date).format("ddd") %></td>
+          <td><%=workouts[i].activity%></td>
+          <td><%=workouts[i].weight%></td>
+          <td><%=workouts[i].rep%></td>
+          <td><a href="/workouts/<%= workouts[i].id %>/edit" class="btn btn-primary logout">Edit</a></td>
+          <td>
+            <!--  ADD DELETE FORM HERE-->
+            <form 
+              action="/workouts/<%= workouts[i].id %>?_method=DELETE"
+              method="POST"
+            >
+              <input type="submit" value="DELETE" class="btn btn-primary"/>
+            </form>
+          </td>
+        </tr>
+        <%}
+        }
+        }%>
+      </table>
+    </div>
+  </body>
+</html>
